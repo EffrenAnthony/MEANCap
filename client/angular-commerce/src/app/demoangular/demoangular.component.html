@@ -1,0 +1,23 @@
+<p>Hola {{title}}</p>
+<input type="text" [(ngModel)]="nuevoNombre">
+<button type="button" (click)='addPerson()'>Agregar nuevo</button>
+<div [ngSwitch]='nuevoNombre'>
+  <p *ngSwitchCase="'Pedro'">el es Pedro</p>
+  <p *ngSwitchCase="'Gricel'">ella es Gricel</p>
+  <p *ngSwitchCase="'Carlos'">el es Carlos</p>
+  <p *ngSwitchDefault>no te conozco</p>
+</div>
+<p>{{nuevoNombre}}</p>
+<ul>
+  <li *ngIf='listNombres.length === 0'>la lista está vacía</li>
+  <li *ngFor="let nombre of listNombres; index as indice">
+    <!-- {{nombre | uppercase}} {{indice}} -->
+    <!-- {{nombre | slice: 4: 10}} {{indice | currency: 'S/.'}} -->
+    {{nombre | slice: 4: 10}} {{indice | currency: 'S/.'}} {{time | date: 'HH'}}
+    <button (click)="deleteItem(indice)">Delete</button>
+  </li>
+</ul>
+
+
+
+<button (click)="hacerClick()">Presioname</button>
