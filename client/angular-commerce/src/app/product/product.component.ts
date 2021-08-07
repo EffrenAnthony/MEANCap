@@ -1,4 +1,6 @@
-import { Component, OnInit, OnChanges, SimpleChanges, DoCheck, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, DoCheck, OnDestroy, Input } from '@angular/core';
+import { Product } from '../../types';
+
 
 @Component({
   selector: 'app-product',
@@ -10,6 +12,7 @@ export class ProductComponent implements OnInit
 //  OnChanges
 // OnDestroy
   {
+  @Input() product!: Product;
   constructor() {
     console.log('1- constructor');
   }

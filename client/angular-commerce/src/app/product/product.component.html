@@ -1,8 +1,9 @@
 <div class="card" style="width: 18rem;">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_1gFmxRhXLRB8XXqSg5rDfOk6JYOSBlFwYa-Q4yTTVJiFBREpGJTn5m5uVyBtZOHCtrg&usqp=CAU" class="card-img-top" alt="...">
+  <img [src]="product.image" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h4 class="card-title">{{product.title}}</h4>
+    <h5 class="card-title">{{product.price | currency: 'S/.'}}</h5>
+    <p class="card-text">{{product.description}}</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>

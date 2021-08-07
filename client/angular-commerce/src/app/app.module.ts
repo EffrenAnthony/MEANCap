@@ -11,6 +11,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProductComponent } from './product/product.component';
 import { DemoangularComponent } from './demoangular/demoangular.component';
 import { DirectivaTestDirective } from './directiva-test.directive';
+import { HomeComponent } from './home/home.component';
+import { ContactComponent } from './contact/contact.component';
+import { SharedModule } from './shared/shared.module';
+import { LayoutComponent } from './layout/layout.component';
+import { Error404Component } from './error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +25,18 @@ import { DirectivaTestDirective } from './directiva-test.directive';
     NavbarComponent,
     ProductComponent,
     DemoangularComponent,
-    DirectivaTestDirective
+    DirectivaTestDirective,
+    HomeComponent,
+    ContactComponent,
+    LayoutComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
