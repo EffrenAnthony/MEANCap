@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+var morgan = require('morgan')
 const router = require('./network/router');
 
 // const router = express.Router()
 let app = express();
+app.use(morgan(':method :url :status :response-time ms - :res[content-length]'))
 // enviar datos por json
 app.use(bodyParser.json());
 // enviar datos por urlencoded

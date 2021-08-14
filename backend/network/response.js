@@ -16,7 +16,7 @@ exports.success = function(req, res, message, status){
   }
   res.status(code).send({
     error:'',
-    body: statusMessage
+    data: statusMessage
   })
 }
 
@@ -25,6 +25,6 @@ exports.error = function (req, res,message, status, detail){
   console.error('[res error]' + detail);
   res.status(status || 500).send({
     error: message,
-    body: ''
+    data: ''
   })
 }
