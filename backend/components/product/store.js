@@ -1,3 +1,4 @@
+const Model = require('./model')
 const listaProductos = [
   {
     title: 'Product1',
@@ -32,9 +33,13 @@ function getProducts(){
   return listaProductos
 }
 
-function createProduct(product){
-  listaProductos.push(product)
-  return product
+async function createProduct(product){
+  try{
+    const newProduct = new Model(product)
+    return await newProduct.save()
+  } catch (err){
+    throw new Error('[Store Error]',err)
+  }
 }
 module.exports = {
   get: getProducts,

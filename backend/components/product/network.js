@@ -2,33 +2,25 @@ const express = require('express');
 const router = express.Router()
 const controller = require('./controller.js')
 const response = require('../../network/response')
-// router.get('/', function(req, res){
-//   console.log(req.headers)
-//   res.header({
-//     "cursomHeader": "token"
-//   })
-//   res.send('Esto es un get de la raiz')
-// })
+
 router.get('/', function(req, res){
   let query = req.query.sort || false
-  // if (query == 'hola') {
-  //   res.send({
-  //     response: "solo saludamos"
-  //   })
-  // }
   const products = controller.get(query)
   response.success(req, res, products, 200)
 })
 
-router.post('/', function(req, res){
-  let body = {...req.body};
-  // body.price = "s/." + body.price.toString()
-  const newProduct = controller.create(body)
-  const resMessage = {
-    message: 'product created',
-    body: newProduct
+router.post('/', async function(req, res){
+  try{
+    let body = {...req.body};
+    const newProduct = await controller.create(body)
+    const resMessage = {
+      message: 'product created',
+      body: newProduct
+    }
+    response.success(req, res, resMessage, 200)
+  } catch (err){
+    response.error(req, res, '[Network] Internal server Error', 500, err)
   }
-  response.success(req, res, resMessage, 200)
 })
 
 

@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const db = require('./db')
+const { config } = require('./config')
 var morgan = require('morgan')
 const router = require('./network/router');
 
@@ -13,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 // inicializar router
 // app.use(router)
 
+db(config.mongodb)
 router(app)
 
 

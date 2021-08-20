@@ -9,12 +9,14 @@ function getProducts(sort){
   return products
 }
 
-function createProduct(product){
+async function createProduct(product){
   try{
-    const productCreated = store.create(product)
+    let newProduct = product
+    newProduct.date = new Date()
+    const productCreated = await store.create(newProduct)
     return productCreated
   } catch(err){
-    console.log(err);
+    throw new Error('[Controller erro]',  err)
   }
 }
 module.exports = {
