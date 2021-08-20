@@ -1,12 +1,16 @@
 const store = require('./store')
 
-function getProducts(sort){
-  const products = store.get()
-  if (sort) {
-    const sortedProducts = products.sort((a,b) => a.price-b.price)
-    return sortedProducts
+async function getProducts(sort){
+  try{
+    const products = await store.get()
+    if (sort) {
+      const sortedProducts = products.sort((a,b) => a.price-b.price)
+      return sortedProducts
+    }
+    return products
+  }catch (err){
+    throw new Error('[Controller error]',  err)
   }
-  return products
 }
 
 async function createProduct(product){
@@ -16,10 +20,22 @@ async function createProduct(product){
     const productCreated = await store.create(newProduct)
     return productCreated
   } catch(err){
-    throw new Error('[Controller erro]',  err)
+    throw new Error('[Controller error]',  err)
+  }
+}
+
+async function getOnePorduct(id){
+  try{
+    const productFinded = await store.getOne(id)
+    const price = 'S/.' + productFinded.price.toString()
+    productFinded._doc.price = price
+    return productFinded
+  } catch (err){
+    throw new Error('[Controller error]',  err)
   }
 }
 module.exports = {
   get: getProducts,
-  create: createProduct
+  create: createProduct,
+  getOne: getOnePorduct
 }

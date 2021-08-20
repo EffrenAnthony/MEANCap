@@ -29,8 +29,13 @@ const listaProductos = [
     price: 85
   },
 ]
-function getProducts(){
-  return listaProductos
+async function getProducts(){
+  try{
+    let products = await Model.find()
+    return products
+  }catch (err){
+    throw new Error('[Store Error]',err)
+  }
 }
 
 async function createProduct(product){
@@ -41,7 +46,18 @@ async function createProduct(product){
     throw new Error('[Store Error]',err)
   }
 }
+
+async function getOneProduct(id){
+  try {
+    const findedProduct = await Model.findById(id)
+    return findedProduct 
+  } catch (err){
+    throw new Error('[Store Error]',err)
+  }
+}
+
 module.exports = {
   get: getProducts,
-  create: createProduct
+  create: createProduct,
+  getOne: getOneProduct,
 }
