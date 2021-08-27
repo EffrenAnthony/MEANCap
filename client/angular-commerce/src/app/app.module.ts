@@ -16,7 +16,8 @@ import { ContactComponent } from './contact/contact.component';
 import { SharedModule } from './shared/shared.module';
 import { LayoutComponent } from './layout/layout.component';
 import { Error404Component } from './error404/error404.component';
-
+import { HttpClientModule} from '@angular/common/http';
+import { CoreModule } from './core/core.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,9 @@ import { Error404Component } from './error404/error404.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

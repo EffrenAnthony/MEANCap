@@ -45,13 +45,31 @@ router.get('/:id', async function(req, res){
   }
 })
 
-router.patch('/', function(req, res){
-  // res.send('Esto es un patch de la raiz')
-  response.success(req, res, 'Esto es un patch de la raiz', 201)
+router.patch('/:id', async function(req, res){
+  try{
+    let id = req.params.id
+    let body = {...req.body}
+    const productUpdated = await controller.patch(id, body)
+    const resMessage = {
+      message: 'PATCH product updated: ' + productUpdated.id,
+      body: productUpdated
+    }
+    response.success(req, res, resMessage, 201)
+  } catch (err){
+  }
 })
 
-router.delete('/', function(req, res){
-  res.send('Esto es un delete de la raiz')
+router.delete('/:id', async function(req, res){
+  try{
+    let id = req.params.id
+    await controller.delete(id)
+    const resMessage = {
+      message: 'DELETE product: ' + id,
+      body: ''
+    }
+    response.success(req, res, resMessage, 201)
+  } catch (err){
+  }
 })
 
 module.exports = router

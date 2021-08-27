@@ -27,6 +27,10 @@ const routes: Routes = [
         path:'aboutus',
         loadChildren: () => import('./aboutus/aboutus.module').then(module => module.AboutusModule)
       },
+      {
+        path:'libraries',
+        loadChildren: () => import('./libraries/libraries.module').then(module => module.LibrariesModule)
+      },
     ]
   },
   {

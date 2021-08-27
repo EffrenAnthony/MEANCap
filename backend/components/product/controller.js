@@ -27,9 +27,30 @@ async function createProduct(product){
 async function getOnePorduct(id){
   try{
     const productFinded = await store.getOne(id)
-    const price = 'S/.' + productFinded.price.toString()
-    productFinded._doc.price = price
+    // const price = 'S/.' + productFinded.price.toString()
+    // productFinded._doc.price = price
     return productFinded
+  } catch (err){
+    throw new Error('[Controller error]',  err)
+  }
+}
+
+async function updateProduct(id, product){
+  try{
+    const productUpdated = await store.patch(id, product)
+    return productUpdated
+  } catch (err){
+    throw new Error('[Controller error]',  err)
+  }
+}
+
+async function deletePorduct(id){
+  try{
+    if(!id){
+      throw new Error('[Validation Error]', 'Id invalid')
+    }
+    await store.delete(id)
+    return true
   } catch (err){
     throw new Error('[Controller error]',  err)
   }
@@ -37,5 +58,7 @@ async function getOnePorduct(id){
 module.exports = {
   get: getProducts,
   create: createProduct,
-  getOne: getOnePorduct
+  getOne: getOnePorduct,
+  patch: updateProduct,
+  delete: deletePorduct
 }

@@ -56,8 +56,36 @@ async function getOneProduct(id){
   }
 }
 
+
+async function updateProduct(id, product){
+  try{
+    const myProduct = await Model.findOne({_id: id})
+    myProduct.title = product.title || myProduct.title
+    myProduct.description = product.description || myProduct.description
+    myProduct.image = product.image || myProduct.image
+    myProduct.price = product.price || myProduct.price
+    return await myProduct.save()
+  }catch (err){
+    throw new Error('[Store Error]',err)
+  }
+
+}
+
+async function deleteProduct(id){
+  try {
+    return await Model.deleteOne({
+      _id: id
+    })
+  } catch (err){
+    throw new Error('[Store Error]',err)
+  }
+}
+
+
 module.exports = {
   get: getProducts,
   create: createProduct,
   getOne: getOneProduct,
+  patch: updateProduct,
+  delete: deleteProduct
 }
