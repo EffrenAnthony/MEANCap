@@ -4,6 +4,9 @@
     <h4 class="card-title">{{product.title}}</h4>
     <h5 class="card-title">{{product.price | currency: 'S/.'}}</h5>
     <p class="card-text">{{product.description}}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <button (click)='addCart()' class="btn btn-secondary">Add cart</button>
+    <a [routerLink]='["/home", product._id]' class="btn btn-primary">Product detail</a>
+    <a [routerLink]='["/edit", product._id]' class="btn btn-warning">Edit</a>
+    <button  class="btn btn-danger" (click)='deleteProduct()'>Delete</button>
   </div>
 </div>

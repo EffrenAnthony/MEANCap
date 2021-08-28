@@ -1,11 +1,8 @@
 <div class="container">
-  <form [formGroup]='form' (ngSubmit)='createProduct($event)'>
+  <form [formGroup]='form' (ngSubmit)='editProduct($event)'>
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">Title</label>
-      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title" formControlName='title'>
-      <span *ngIf="form.controls['title'].hasError('required')" class='text-danger'>
-        Campo obligatorio
-      </span>
+      <input  type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title" formControlName='title'>
     </div>
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">Image</label>
@@ -19,7 +16,8 @@
       <label for="exampleFormControlInput1" class="form-label">Price</label>
       <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="price" formControlName='price'>
     </div>
-    <button type="submit" class="btn btn-primary">Crear producto</button>
+    <button type="submit" class="btn btn-primary">Edit Product</button>
   </form>
 
 </div>
+

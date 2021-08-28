@@ -1,5 +1,7 @@
-import { Component, OnInit, OnChanges, SimpleChanges, DoCheck, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, DoCheck, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../types';
+import { CartService } from '../core/services/cart.service';
+import { ProductService } from '../core/services/product.service';
 
 
 @Component({
@@ -13,7 +15,11 @@ export class ProductComponent implements OnInit
 // OnDestroy
   {
   @Input() product!: Product;
-  constructor() {
+  @Output() productDeleted: EventEmitter<any> = new EventEmitter();
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+  ) {
     console.log('1- constructor');
   }
   // ngOnChanges(changes: SimpleChanges):void{
@@ -24,6 +30,13 @@ export class ProductComponent implements OnInit
     console.log('3- ngOnInit');
   }
 
+  deleteProduct(): void {
+    this.productService.deleteProduct(this.product._id)
+    .subscribe(res => {
+      console.log(res)
+      this.productDeleted.emit(this.product._id)
+    })
+  }
   // ngDoCheck():void{
   //   console.log('4- ngDoCheck');
 
@@ -32,4 +45,8 @@ export class ProductComponent implements OnInit
   // ngOnDestroy():void{
   //   console.log('5. destroy');
   // }
+
+  addCart():void{
+    this.cartService.addCart(this.product);
+  }
 }

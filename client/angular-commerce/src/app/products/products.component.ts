@@ -26,4 +26,8 @@ export class ProductsComponent implements OnInit {
       this.products = products.data.body
     })
   }
+
+  filterList(id:any):void{
+    this.products = this.products.filter(product => product._id !== id)
+  }
 }

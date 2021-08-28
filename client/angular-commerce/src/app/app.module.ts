@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { Error404Component } from './error404/error404.component';
 import { HttpClientModule} from '@angular/common/http';
 import { CoreModule } from './core/core.module';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
+import { OrderComponent } from './order/order.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +33,10 @@ import { CoreModule } from './core/core.module';
     HomeComponent,
     ContactComponent,
     LayoutComponent,
-    Error404Component
+    Error404Component,
+    ProductDetailComponent,
+    EditProductComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,8 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
